@@ -1,5 +1,5 @@
 <?php
-require_once("modelo.php");
+require_once("personajes.php");
 header('Content-Type:application/json'); 
 // $var = $_POST["nombre"];
 // switch ($_SERVER['REQUEST_METHOD']) {
@@ -33,7 +33,7 @@ header('Content-Type:application/json');
     
 // 
 $obj = new Personaje();
-$obj->Traer();
-
+// $obj->Traer($_POST["nombre"]);
+$obj->Filtrar("gola");
 
 ?>
