@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api</title>
+</head>
+<body>
+ <h1>Personajes</h1>
+ <style>
+     #main{
+         display: flex;
+         flex-wrap: wrap;
+     }
+     .pora{
+         display: flex;
+         flex-direction: column;
+         font-size: 1.3em;
+         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+         margin: 10px;
+        }
+     .pora p{
+         margin: 0px;
+     }
+     .filtros{
+         display: flex;
+         flex-direction: column;
+     }
+ </style>
+
+ <form class="filtros">
+     <div class="filtroso">
+        <input id="dead" type="checkbox" check="" value="dead">
+        <label for="">Muerto</label>
+     </div>
+    <div class="filtroso">
+        <input id="alive" type="checkbox" check="" value="alive">
+        <label for="">Vivo</label>
+    </div>  
+    <div class="filtroso">
+        <input id="unknown" type="checkbox" check="" value="unknown">
+        <label for="">Desconocido</label>
+    </div>
+ </form>
+ <!-- <form action="index.php">
+          <input name="id" type="text" id="buscar">
+          <button id="btn">Ingreso</button>
+ </form> -->
+ <nav id="navegador">
+     
+ </nav>
+
+ <main id="main">
+     
+ </main>
+ <script>
+ //Variables de usos multiples
+         var d = document;
+         var main = d.getElementById("main");
+         var nav = d.getElementById("navegador");
+         var filtro = d.getElementById("filtros")
+         var cont = 0;
+ // Función para poder obtener todos los personajes   
+ 
+async function getResponse() {
+	var response = await fetch('index.php',{method: 'GET'})
+    .then(res=>res.json())
+    .then(res=>
+        crear(res)
+    );
+}
+
+ // Función para mostrar los resultados en html  
+
+function crear(respo){
+        for (let i = 0; i < 1; i++) {
+                respo[1].forEach(e => {
+                    let deso             = d.createElement("div");
+                    deso.classList+= "pora ";
+                    for (let er = 1; er < e.length; er++) {
+                        let nombre           = document.createElement("p");
+                        nombre.innerText=e[er];
+                        deso.appendChild(nombre)
+                        main.appendChild(deso);                    
+                        }                  
+                    }
+                );               
+            };
+        
+            }
+    
+ // Función ayuda para crear una paginación<<Horrible>>
+
+function creador(limite, status) {
+    //Este for crea los botones 
+    for (let d = 1; d < limite; d++) {
+        let btn = document.createElement("button");
+        var num = d;
+        btn.setAttribute("atributo", num);
+        btn.innerText=d;
+        nav.appendChild(btn)
+    }
+
+    var botones = d.querySelectorAll("[atributo]");
+
+    for (let i = 0; i < limite; i++) {
+        //Este addEventListener escucha si se clickea
+        botones[i].addEventListener('click',()=>{
+            console.log(status);
+            cont++;
+            //Este if borra los otros divs creados anteriormente
+            if (cont>1) {
+                let divs = document.querySelectorAll(".pora ");
+                //Este for borra los divs
+                for (let e = 0; e < divs.length; e++) {
+                    main.removeChild(divs[e]);
+                }
+            }                  
+            let btn = botones[i].innerText;
+            let data = new FormData();
+            data.append("status", status);
+            data.append("calle", btn);
+            fetch("index.php", {
+                method:"post",
+                body:data
+            }).then(res=>res.json()).then(res=>crear(res));
+        })            
+    }  
+}
+    
+ // Función ayuda para crear una paginación despues de obtener los filters
+        
+function checkboxes() {
+    for (let s = 0; s < 4; s++) {
+        var checks = d.querySelectorAll("[check]");       
+         checks[s].addEventListener('click', ()=>{
+            let check = checks[s].value;
+            if (check=="dead") {
+                console.log(check);
+                creador(16, check);
+            }
+            if (check=="alive") {
+                console.log(check);
+                creador(22, check);
+            }
+            if (check=="unknown") {
+                console.log(check);
+                creador(6, check);
+            }
+        })
+}
+
+}    
+
+checkboxes();
+ca(); 
+// creador();
+// getResponse();   
+
+     </script>
+</body>
+</html>

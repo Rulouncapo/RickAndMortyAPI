@@ -34,6 +34,10 @@ header('Content-Type:application/json');
 // 
 $obj = new Personaje();
 // $obj->Traer($_POST["nombre"]);
-$obj->Filtrar("gola");
+// $obj->Filtrar($_POST["status"], $_POST["calle"]);
 
+while ($_POST["status"] && $_POST["calle"]) {
+    $obj->Filtrar($_POST["status"], $_POST["calle"]);
+    break;
+}
 ?>
