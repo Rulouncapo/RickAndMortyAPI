@@ -71,28 +71,28 @@ require_once("conexion.php");
             
             echo json_encode($personajes);
         }
-        // static public function Setear($id){
-        //     if ($id) {
-        //         $con = parent::contactar();
-        //         $json = json_decode($con,true);        
-        //         $name = $json["results"][$id]["name"];
-        //         $status = $json["results"][$id]["status"];
-        //         $species = $json["results"][$id]["species"];
-        //         $gender = $json["results"][$id]["gender"];
-        //         $origen = $json["results"][$id]["origin"]["name"];
-        //         $imagen = $json["results"][$id]["image"];
+        static public function Setear($id){
+            if ($id) {
+                $con = parent::contactar();
+                $json = json_decode($con,true);        
+                $name = $json["results"][$id]["name"];
+                $status = $json["results"][$id]["status"];
+                $species = $json["results"][$id]["species"];
+                $gender = $json["results"][$id]["gender"];
+                $origen = $json["results"][$id]["origin"]["name"];
+                $imagen = $json["results"][$id]["image"];
 
-        //         $datos[]=$name;
-        //         $datos[]=$status;
-        //         $datos[]=$species;
-        //         $datos[]=$gender;
-        //         $datos[]=$origen;
-        //         $datos[]=$imagen;
-        //         var_dump($datos);
-        //         return json_encode($datos);
-        //     }
+                $datos[]=$name;
+                $datos[]=$status;
+                $datos[]=$species;
+                $datos[]=$gender;
+                $datos[]=$origen;
+                $datos[]=$imagen;
+                var_dump($datos);
+                return json_encode($datos);
+            }
             
-        // }
+        }
         static public function Traer($pagina = false){
             switch ($pagina) {
                 case '42':

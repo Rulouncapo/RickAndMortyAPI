@@ -1,0 +1,173 @@
+
+body{
+
+    
+    margin: 0px;
+    overflow-y:scroll;
+}
+header{
+    display: flex;
+    background: #282c34;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+.estado{
+    font-size: 1.7em;
+}
+.filtro{
+    padding: 1.3em;
+}
+.filtros{
+    display: flex;
+    flex-direction: column;
+}
+.filtroso{
+    font-size: 1.4em;
+}
+.navbar{
+    display: flex;
+    justify-content: center;    
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.btn{
+    background: white;
+    border: none;
+    font-size: 1.3em;
+    margin: 3px 3px;
+    border: 0.5px gray solid;
+    transition: all 1s;
+    padding: 10px 15px;
+}            
+.btn:hover{
+    background: rgba(128, 128, 128, 0.507);
+}
+.logo{
+    margin: 20px;
+}
+.main{
+    display: flex;
+    margin: 10px;
+}
+.dada {
+    display: flex;
+    padding: 40px;
+    padding-bottom: 35px;
+}
+#buscar {
+    height: 47px;
+    width: 220px;
+    background-color: #fff;
+    border-style: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.4em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 10px;
+}
+.lupita {
+    outline: none;
+    border-style: none;
+    background-color: #006241;
+    border: 0px 0px 0px 10px black;
+    cursor: pointer;
+}
+.lupa{
+    height: 40px;
+    width: 40px;
+}
+aside{
+    margin-left: 10px;
+    flex-direction: column;
+    display: flex;
+    width: 20%;
+    max-height: 10.6em;
+    background-color: #f4444f;
+    position: sticky;       
+    top: 40px;
+    left: 10px;
+}
+aside .titulo{
+    margin:10px 0px 0px 0px;
+}
+aside .filtro{
+    margin:0px 0px 0px 0px;
+    padding: 0px 1em;
+}
+.filtro{
+    display: flex;
+    justify-content: center;
+}
+
+.grilla{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1rem;
+
+}
+.card{
+    /* display: flex; */
+    min-width: 17rem;
+    max-width: 17rem;
+    margin: 3rem 0.5rem;
+    border-radius: 0.5rem;
+    /* background: #898989; */
+    box-shadow: -2px 2px 2px 1px rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 0.5px 0 rgb(0 0 0 / 12%);
+    text-align: center;
+    min-height: 14em;
+    padding: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+.img_perfil{
+    border-radius: 0.5rem;
+    box-shadow: 0 16px 8px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    margin-top: -3rem;
+    width: 95%;
+}
+summary.nombre::marker{
+    content: "";
+      
+}
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans";
+    transition: all 1s;
+}
+.flecha{
+    margin-top: 5px;
+    transition: all 1s;
+}
+.movido{
+    transform:translateY(10px);
+    transform:rotate(-180deg);
+}
+.desmovido{
+    transform:translateY(-10px);
+    transform:rotate(180deg);
+}
+.colec_listas{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.lista{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}   
+
+.card details[open] {
+    
+}
+.item{
+    display: flex;
+    font-size: 1.5em;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}

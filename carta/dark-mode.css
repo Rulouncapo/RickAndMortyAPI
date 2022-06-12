@@ -1,0 +1,58 @@
+:root {
+    --dark-gris: #6d6b6b;
+    --dark-color: #222;
+    --bg-color: #fff;
+  }
+  
+  [data-theme="dark"] {
+    --color: var(--main-color);
+    --bg-color: var(--second-color);
+  }
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background-color: var(--bg-color);
+    color: var(--color);
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* header */
+  .card {
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background: var( --dark-gris);
+    color: var(--second-color);
+  }
+  
+  .header h1 {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* dark-btn */
+  .dark-btn {
+    position: fixed;
+    bottom: 1vh;
+    left: 1vw;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    z-index: 999;
+  }
+  
+  .dark-btn:hover {
+    background-color: var(--second-color);
+    color: var(--main-color);
+  }
+  
