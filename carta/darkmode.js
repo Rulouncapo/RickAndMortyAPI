@@ -1,13 +1,14 @@
+function oscurecer(){
 let body = document.body;
             let filtro = document.getElementById("filtro");
             let btn = document.getElementById("dark");
             let oscuros = document.querySelectorAll("sun-mode");
-            let card = document.querySelectorAll(".card");
             console.log(btn);
             let sol = "☀️";
             let luna = "🌙";
             btn.addEventListener('click', ()=>{
-                console.log(btn);
+                let card = document.querySelectorAll(".card");
+                console.log(card);
                 if (btn.innerHTML==sol) {
                     btn.innerHTML = luna;
                     body.style.background = "#000";
@@ -29,3 +30,5 @@ let body = document.body;
                
 
             })
+}
+oscurecer()

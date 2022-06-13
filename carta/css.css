@@ -80,8 +80,8 @@ aside{
     margin-left: 10px;
     flex-direction: column;
     display: flex;
-    width: 20%;
-    max-height: 10.6em;
+    width: 25%;
+    max-height: 14.6em;
     background-color: #f4444f;
     position: sticky;       
     top: 40px;
@@ -99,7 +99,8 @@ aside .filtro{
     justify-content: center;
 }
 
-.grilla{
+#grilla{
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

@@ -3,15 +3,15 @@ require_once("personajes.php");
 header('Content-Type:application/json'); 
 // $var = $_POST["nombre"];
 // switch ($_SERVER['REQUEST_METHOD']) {
-//     case 'GET':
-//         if (isset($_GET['id'])) {
-//             if (Personaje::Setear($_GET['id'])) {
+//     case 'POST':
+//         if (isset($_POST['id'])) {
+//             if (Personaje::Filtrar("alive", intval($_POST['id'],10))) {
 //                 http_response_code(200);
 //             }
 //             else {
 //                 http_response_code(400);
 //             }
-//         }
+//         }}
 //         else {
 //             http_response_code(405);
 //         }
@@ -34,10 +34,10 @@ header('Content-Type:application/json');
 // 
 $obj = new Personaje();
 // $obj->Traer($_POST["nombre"]);
-// $obj->Filtrar($_POST["status"], $_POST["calle"]);
-
-while ($_POST["status"] && $_POST["calle"]) {
-    $obj->Filtrar($_POST["status"], $_POST["calle"]);
-    break;
+if (isset($_POST["status"])) {
+   $obj->Filtrar($_POST["status"], $_POST["calle"]);
+}else{
+    $obj->Filtrar("todos",42);
 }
+
 ?>

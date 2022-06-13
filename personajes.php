@@ -5,29 +5,86 @@ require_once("conexion.php");
         private $id;
         private $name;
         private $status;
-        static public function Filtrar($especia = "alive", $ruta = 1){
-            if ($especia=="alive"){
+        static public function Filtrar($especia, $ruta){
+            if ($especia == "alive"){
                 $numero = 23;
+                for($i= $ruta-1; $i <  $ruta ;$i++) {    
+                    switch ($i) {
+                                 case '21':
+                                     $irl = "https://rickandmortyapi.com/api/character?page=".$ruta."&status=".$especia;
+                                     $con = parent::contactar($irl);     
+                                     $json = json_decode($con, true);   
+                                     if ($json["results"]) {
+                                     }                                    
+                                         for ($e=0; $e < 19; $e++) {  
+                                             $id = $json["results"][$e]["id"];
+                                             $name = $json["results"][$e]["name"];
+                                             $status = $json["results"][$e]["status"];
+                                             $species = $json["results"][$e]["species"];
+                                             $gender = $json["results"][$e]["gender"];
+                                             $origen = $json["results"][$e]["origin"]["name"];
+                                             $locacion = $json["results"][$e]["location"]["name"];
+                                             $imagen = $json["results"][$e]["image"];
+                                             $datos[0]=$id;
+                                             $datos[1]=$name;
+                                             $datos[2]=$status;
+                                             $datos[3]=$species;
+                                             $datos[4]=$gender;
+                                             $datos[5]=$origen;
+                                             $datos[6]=$locacion;
+                                             $datos[7]=$imagen;
+                                             $personaje[$e]=$datos;                               
+                                         }
+                                         $personajes[0]=$personaje;                
+                                     break;
+                                 default:
+                                 $irl = "https://rickandmortyapi.com/api/character?page=".$ruta."&status=".$especia;
+                                     $con = parent::contactar($irl);
+                                     $json = json_decode($con, true);            
+                                     if ($json["results"]) {
+                                         for ($e=0; $e < 20; $e++) { 
+                                             $id = $json["results"][$e]["id"];
+                                             $name = $json["results"][$e]["name"];
+                                             $status = $json["results"][$e]["status"];
+                                             $species = $json["results"][$e]["species"];
+                                             $gender = $json["results"][$e]["gender"];
+                                             $origen = $json["results"][$e]["origin"]["name"];
+                                             $locacion = $json["results"][$e]["location"]["name"];
+                                             $imagen = $json["results"][$e]["image"];
+             
+                                             $datos[0]=$id;
+                                             $datos[1]=$name;
+                                             $datos[2]=$status;
+                                             $datos[3]=$species;
+                                             $datos[4]=$gender;
+                                             $datos[5]=$origen;
+                                             $datos[6]=$locacion;
+                                             $datos[7]=$imagen;
+                                             $personaje[$e]=$datos;               
+                                         }
+                                     }                                     
+                                 }  
+                                 $personajes[0]=$personaje;     
+                                 
+             }    echo json_encode($personajes);
             }
-            if ($especia== "dead") {
-                $numero = 15;
-            }
-            if ($especia== "unknown") {
-                $numero = 5;
-            }
-            for($i=1; $i < $numero ;$i++) {  
+            if ($especia == "dead") {
+                $numero = 16;
+                for($i=$ruta-1; $i < $ruta ;$i++) {  
                 switch ($i) {
-                    case '15':
-                        $irl = "https://rickandmortyapi.com/api/character?page=".$i."&status=".$especia;
+                    case '14':
+                        $irl = "https://rickandmortyapi.com/api/character?page=".$ruta."&status=".$especia;
                         $con = parent::contactar($irl);
-                        $json = json_decode($con, true);       
-                            for ($e=0; $e < 7; $e++) {  
+                        $json = json_decode($con, true);  
+                        if ($json) {
+                             for ($e=0; $e < 7; $e++) {  
                                 $id = $json["results"][$e]["id"];
                                 $name = $json["results"][$e]["name"];
                                 $status = $json["results"][$e]["status"];
                                 $species = $json["results"][$e]["species"];
                                 $gender = $json["results"][$e]["gender"];
                                 $origen = $json["results"][$e]["origin"]["name"];
+                                $locacion = $json["results"][$e]["location"]["name"];
                                 $imagen = $json["results"][$e]["image"];
                                 $datos[0]=$id;
                                 $datos[1]=$name;
@@ -35,10 +92,13 @@ require_once("conexion.php");
                                 $datos[3]=$species;
                                 $datos[4]=$gender;
                                 $datos[5]=$origen;
-                                $datos[6]=$imagen;
+                                $datos[6]=$locacion;
+                                $datos[7]=$imagen;
                                 $personaje[$e]=$datos;                               
                             }
-                            $personajes[$i]=$personaje;                
+                        }     
+                           
+                            $personajes[0]=$personaje;                
                         break;
                     default:
                         $irl = "https://rickandmortyapi.com/api/character?page=".$ruta."&status=".$especia;
@@ -52,6 +112,7 @@ require_once("conexion.php");
                                 $species = $json["results"][$e]["species"];
                                 $gender = $json["results"][$e]["gender"];
                                 $origen = $json["results"][$e]["origin"]["name"];
+                                $locacion = $json["results"][$e]["location"]["name"];
                                 $imagen = $json["results"][$e]["image"];
 
                                 $datos[0]=$id;
@@ -60,20 +121,126 @@ require_once("conexion.php");
                                 $datos[3]=$species;
                                 $datos[4]=$gender;
                                 $datos[5]=$origen;
-                                $datos[6]=$imagen;
+                                $datos[6]=$locacion;
+                                $datos[7]=$imagen;
                                 $personaje[$e]=$datos;               
                             }
                         }                                     
-                    }
-                $personajes[$i]=$personaje; 
+                    }$personajes[0]=$personaje; 
                         continue;
-                }        
+                    }
+                    echo json_encode($personajes);
+                }
+            if ($especia == "unknown") {
+                $numero = 5;
+                for($i=$ruta-1; $i < $ruta ;$i++) {  
             
-            echo json_encode($personajes);
+                    switch ($especia =="unknown") {
+                                 
+                                 default:
+                                 $irl = "https://rickandmortyapi.com/api/character?page=".$ruta."&status=".$especia;
+                                     $con = parent::contactar($irl);
+                                     $json = json_decode($con, true);            
+                                     if ($json["results"]) {
+                                         for ($e=0; $e < 20; $e++) { 
+                                             $id = $json["results"][$e]["id"];
+                                             $name = $json["results"][$e]["name"];
+                                             $status = $json["results"][$e]["status"];
+                                             $species = $json["results"][$e]["species"];
+                                             $gender = $json["results"][$e]["gender"];
+                                             $origen = $json["results"][$e]["origin"]["name"];
+                                             $locacion = $json["results"][$e]["location"]["name"];
+                                             $imagen = $json["results"][$e]["image"];
+             
+                                             $datos[0]=$id;
+                                             $datos[1]=$name;
+                                             $datos[2]=$status;
+                                             $datos[3]=$species;
+                                             $datos[4]=$gender;
+                                             $datos[5]=$origen;
+                                             $datos[6]=$locacion;
+                                             $datos[7]=$imagen;
+                                             $personaje[$e]=$datos;               
+                                         }
+                                     }                                     
+                                 }       
+                    $personajes[0]=$personaje; 
+             } 
+             echo json_encode($personajes);
+            }    
+            if ($especia == "todos") {
+                switch ($ruta) {
+                    case '42':           
+                            if ($ruta) {
+                                $irl = "https://rickandmortyapi.com/api/character?page=".$ruta;
+                            }
+                            $con = parent::contactar($irl);
+                            $json = json_decode($con, true);       
+                            if ($json["results"]) {
+                                for ($e=0; $e < 6; $e++) { 
+                                    $id = $json["results"][$e]["id"];
+                                    $name = $json["results"][$e]["name"];
+                                    $status = $json["results"][$e]["status"];
+                                    $species = $json["results"][$e]["species"];
+                                    $gender = $json["results"][$e]["gender"];
+                                    $origen = $json["results"][$e]["origin"]["name"];
+                                    $location = $json["results"][$e]["location"]["name"];
+                                    $imagen = $json["results"][$e]["image"];
+                                    $datos[0]=$id;
+                                    $datos[1]=$name;
+                                    $datos[2]=$status;
+                                    $datos[3]=$species;
+                                    $datos[4]=$gender;
+                                    $datos[5]=$origen;
+                                    $datos[6]=$location;
+                                    $datos[7]=$imagen;                                
+                                    $personaje[$e]=$datos;
+                                
+                                }
+                            $personajes[0]=$personaje;
+                            }                                   
+                            // echo json_encode($personajes[4]) ;
+                        break;
+                    
+                    default:   
+                        if ($ruta) {
+                            $irl = "https://rickandmortyapi.com/api/character?page=".$ruta;
+                        }
+                        $con = parent::contactar($irl);
+                        $json = json_decode($con, true);       
+                        if ($json["results"]) {
+                            for ($e=0; $e < 20; $e++) { 
+                                $id = $json["results"][$e]["id"];
+                                $name = $json["results"][$e]["name"];
+                                $status = $json["results"][$e]["status"];
+                                $species = $json["results"][$e]["species"];
+                                $gender = $json["results"][$e]["gender"];
+                                $origen = $json["results"][$e]["origin"]["name"];
+                                $location = $json["results"][$e]["location"]["name"];
+                                $imagen = $json["results"][$e]["image"];
+                                $datos[0]=$id;
+                                $datos[1]=$name;
+                                $datos[2]=$status;
+                                $datos[3]=$species;
+                                $datos[4]=$gender;
+                                $datos[5]=$origen;
+                                $datos[6]=$location;
+                                $datos[7]=$imagen;
+                                $personaje[$e]=$datos;                      
+                            }                   
+                        }
+                       
+                        break;
+                    }
+                        $personajes[0]=$personaje;
+                        echo json_encode($personajes) ;
+                        
+            }
         }
+
         static public function Setear($id){
             if ($id) {
-                $con = parent::contactar();
+                $con = parent::contactar("https://rickandmortyapi.com/api/character/".$id);
                 $json = json_decode($con,true);        
                 $name = $json["results"][$id]["name"];
                 $status = $json["results"][$id]["status"];
@@ -81,90 +248,19 @@ require_once("conexion.php");
                 $gender = $json["results"][$id]["gender"];
                 $origen = $json["results"][$id]["origin"]["name"];
                 $imagen = $json["results"][$id]["image"];
-
-                $datos[]=$name;
-                $datos[]=$status;
-                $datos[]=$species;
-                $datos[]=$gender;
-                $datos[]=$origen;
-                $datos[]=$imagen;
+                $datos[0]=$name;
+                $datos[0]=$status;
+                $datos[0]=$species;
+                $datos[0]=$gender;
+                $datos[0]=$origen;
+                $datos[0]=$imagen;
                 var_dump($datos);
                 return json_encode($datos);
             }
             
         }
-        static public function Traer($pagina = false){
-            switch ($pagina) {
-                case '42':
-                    for ($i=1; $i < 2; $i++) { 
-                        $irl = "https://rickandmortyapi.com/api/character?page=".$i;
-                        if ($pagina) {
-                            $irl = "https://rickandmortyapi.com/api/character?page=".$pagina;
-                        }
-                        $con = parent::contactar($irl);
-                        $json = json_decode($con, true);       
-                        if ($json["results"]) {
-                            for ($e=0; $e < 6; $e++) { 
-                                $id = $json["results"][$e]["id"];
-                                $name = $json["results"][$e]["name"];
-                                $status = $json["results"][$e]["status"];
-                                $species = $json["results"][$e]["species"];
-                                $gender = $json["results"][$e]["gender"];
-                                $origen = $json["results"][$e]["origin"]["name"];
-                                $imagen = $json["results"][$e]["image"];
-                                $datos[0]=$id;
-                                $datos[1]=$name;
-                                $datos[2]=$status;
-                                $datos[3]=$species;
-                                $datos[4]=$gender;
-                                $datos[5]=$origen;
-                                $datos[6]=$imagen;
-                                $personaje[$e]=$datos;
-                            
-                            }
-                        $personajes[$i]=$personaje;
-                        }
-                        
-                    }
-                        // var_dump($personajes);
-                        echo json_encode($personajes[1]) ;
-                    break;
-                
-                default:
-                for ($i=1; $i < 2; $i++) { 
-                    $irl = "https://rickandmortyapi.com/api/character?page=".$i;
-                    if ($pagina) {
-                        $irl = "https://rickandmortyapi.com/api/character?page=".$pagina;
-                    }
-                    $con = parent::contactar($irl);
-                    $json = json_decode($con, true);       
-                    if ($json["results"]) {
-                        for ($e=0; $e < 20; $e++) { 
-                            $id = $json["results"][$e]["id"];
-                            $name = $json["results"][$e]["name"];
-                            $status = $json["results"][$e]["status"];
-                            $species = $json["results"][$e]["species"];
-                            $gender = $json["results"][$e]["gender"];
-                            $origen = $json["results"][$e]["origin"]["name"];
-                            $imagen = $json["results"][$e]["image"];
-                            $datos[0]=$id;
-                            $datos[1]=$name;
-                            $datos[2]=$status;
-                            $datos[3]=$species;
-                            $datos[4]=$gender;
-                            $datos[5]=$origen;
-                            $datos[6]=$imagen;
-                            $personaje[$e]=$datos;
-                        
-                        }
-                    $personajes[$i]=$personaje;
-                    }
-                    
-                }
-                    // var_dump($personajes);
-                    echo json_encode($personajes) ;
-                    break;
-            }
-        }
-    }
+        // static public function Traer($pagina = false){
+        
+        //     }
+        }  
 ?>

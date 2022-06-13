@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+
     <header>
         <div class="logo">
             <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="50.60953mm" height="20.827026mm" viewBox="0 0 264.60952 80.827027" version="1.1" id="svg438" sodipodi:docname="Rick and Morty logo.svg" inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
@@ -63,21 +64,18 @@
         <div class="cambiador">
             <button id="dark" class="dark-btn">☀️</button>
         </div>
-        <div class="buscador">
+        
+        <!-- <div class="buscador">
             <nav class="dada">
                 <input type="search" name="" id="buscar">  
                 <button id="btn" class="lupita">
-                    <img class="lupa" src="lupa.png" alt="">
+                <img class="lupa" src="lupa.png" alt="">
                 </button>
 
             </nav>
-        </div>
+        </div> -->
     </header>
-    <nav id="navegador" class="navbar">
-       <button class="btn">1</button>
-       <button class="btn">2</button>
-       <button class="btn">3</button>
-       <button class="btn">4</button> 
+    <nav class="navegador navbar">
        </nav>
     <div class="main">
         <aside id="filtro">
@@ -98,12 +96,16 @@
                             <input class="check" id="unknown" type="checkbox" check="" value="unknown">
                             <label for="">Desconocidos</label>
                         </div>
+                        <div class="filtroso">
+                            <input class="check" id="todos" type="checkbox" check="" value="todos">
+                            <label for="">Todos</label>
+                        </div>
                     </form>
                </details>
             </div>
         </aside>
-        <div class="grilla">
-            <div class="card">
+        <div id="grilla">
+            <!-- <div class="card">
                 <div class="header">
                     <img src="1.jpeg" alt="" class="img_perfil">
                 </div>
@@ -124,12 +126,225 @@
                         </div>
                     </div>
              
-            </div>
+            </div> -->
         </div> 
+        
     </div>
-    <script src="darkmode.js">
+<nav class="navegador navbar">
+        </nav>
+    <script src="darkmode.js"> </script>
+    <!-- <script src="js.js"> </script> -->
+
+    <script>
+         var d = document;
+         var grilla = d.getElementById("grilla");
+         var nav = d.querySelectorAll(".navegador");
+         console.log(nav);
+         var cont = 0;
+         async function getResponse() {
+            let data = new FormData();
+            data.append("calle", 1)
+            data.append("status", "alive")
+	var response = await fetch('../index.php',
+    {   method: 'POST', 
+        body:data}
+    )
+    .then(res=>res.json())
+    .then(res=>
+        crear(res)
+    );
+    creador(43, "todos")
+}
+getResponse();
+function crear(respo){
+
+    let cards = document.querySelectorAll(".card ");
+    if (cards) {
+        for (let e = 0; e < cards.length; e++) {
+                    grilla.removeChild(cards[e]);
+                }
+    }
+    
+            console.log(respo);            
+        for (let i = 0; i < 1; i++) {
+            respo[0].forEach(e => {
+                            var card                 = d.createElement("div");
+                            var card_header          = d.createElement("div");
+                            var card_header_img      = d.createElement("img");
+                            var card_body            = d.createElement("div");
+                            var card_body_coleccion  = d.createElement("div");
+                            var detalle              = d.createElement("details");
+                            var summary              = d.createElement("summary");
+                            var summary_h2           = d.createElement("h2");
+                            var summary_h2_img       = d.createElement("img");
+                            var detalle_ul           = d.createElement("ul");
+                            var detalle_ul_estado    = d.createElement("li");
+                            var detalle_ul_genero    = d.createElement("li");
+                            var detalle_ul_especie   = d.createElement("li");
+                            var detalle_ul_origen    = d.createElement("li");
+                            var detalle_ul_locacion  = d.createElement("li");
+                             detalle_ul_estado.  innerText  += "Status:";
+                             detalle_ul_genero.  innerText  += "Genero:";
+                             detalle_ul_especie. innerText  += "Especie:";
+                             detalle_ul_origen.  innerText  += "Origen:";
+                             detalle_ul_locacion.innerText  += "Locación:";
+                             detalle_ul_estado.  innerText  += e[2];
+                             detalle_ul_genero.  innerText  += e[3];
+                             detalle_ul_especie. innerText  += e[4];
+                             detalle_ul_origen.  innerText  += e[5];
+                             detalle_ul_locacion.innerText  += e[6];
+                             card_header_img.src = e[7];
+                             summary_h2_img.src = "flecha.png";
+                             summary_h2.innerText+= e[1];
+                             card.classList+="card";
+                             card_header_img.classList.     add("img_perfil");
+                             card_header.classList.         add("header");
+                             card_body.classList.           add("body");
+                             card_body_coleccion.classList. add("colec_listas");
+                             detalle.classList.             add("nombre_resultado");
+                             summary.classList.             add("nombre");
+                             summary_h2.classList.          add("titulo");
+                             summary_h2_img.classList.      add("flecha");
+                             detalle_ul.classList.          add("lista");
+                             detalle_ul_estado.classList.   add("item");
+                             detalle_ul_genero.classList.   add("item");
+                             detalle_ul_especie.classList.  add("item");
+                             detalle_ul_origen.classList.   add("item");
+                             detalle_ul_locacion.classList. add("item"); 
+                            card_header.            appendChild(card_header_img);
+                             detalle_ul.            appendChild(detalle_ul_estado);
+                             detalle_ul.            appendChild(detalle_ul_genero);
+                             detalle_ul.            appendChild(detalle_ul_especie);
+                             detalle_ul.            appendChild(detalle_ul_origen);
+                             detalle_ul.            appendChild(detalle_ul_locacion);
+                             summary_h2.            appendChild(summary_h2_img);
+                             summary.               appendChild(summary_h2);
+                             detalle.               appendChild(summary);
+                             detalle.               appendChild(detalle_ul);
+                             card_body_coleccion.   appendChild(detalle);
+                             card_body.             appendChild(card_body_coleccion);
+                             card.                  appendChild(card_header);
+                             card.                  appendChild(card_body);
+                             grilla.                appendChild(card);       
+                             if (e[2]=="Alive") {
+                                card.style.backgroundColor = "#6d6";
+                             }
+                             if (e[2]=="Dead") {
+                                card.style.backgroundColor = "#f4444f";
+                             }
+
+                    }
+                            
+                );    
+                
+                let flechas = document.querySelectorAll(".flecha");
+                let estado = document.querySelectorAll(".estado");
+                let titulo = document.querySelectorAll(".titulo");
+                           
+    var bool = false;
+    // for (let i = 0; i < flechas.length; i++) {
+    //       estado[i].addEventListener('click',()=>{
+    //         console.log(titulo);
+    //         console.log(flechas);            
+    //         let fle = flechas[i];
+    //         if (bool == false) {
+    //             console.log(fle);
+    //             fle.classList.add("movido");
+    //             bool = true;
+    //         } else{
+    //             console.log(fle);
+    //             fle.classList.remove("movido");
+    //             bool = false;
+    //         }
+    //     })            
+    // }
+    for (let i = 0; i < flechas.length; i++) {
+        titulo[i].addEventListener('click',()=>{
+            let fle = flechas[i-1];
+            if (bool == false) {
+                // console.log(fle);
+                fle.classList.add("movido");
+                bool = true;
+            } else{
+                // console.log(fle);
+                fle.classList.remove("movido");
+                bool = false;
+            }
+        })            
+    }   }
+            };
         
-        
+function creador(limite, status) {
+
+    let btnes = document.querySelectorAll(".btn ");
+       for (let e = 0; e < btnes.length; e++) {
+            nav[0].removeChild(btnes[e])
+            nav[1].removeChild(btnes[e])
+        }   
+    //Este for crea los botones 
+    for (let d = 1; d < limite; d++) {
+        let btn = document.createElement("button");
+        var num = d;
+        btn.setAttribute("atributo", num);
+        btn.classList.add("btn");
+        btn.innerText=d;
+        nav[0].appendChild(btn)
+        nav[2].appendChild(btn)
+    }
+
+    var botones = d.querySelectorAll("[atributo]");
+
+    for (let i = 0; i < limite; i++) {
+        //Este addEventListener escucha si se clickea
+        botones[i].addEventListener('click',()=>{
+            console.log(status);
+            cont++;
+            //Este if borra los otros divs creados anteriormente
+            if (cont>1) {
+                let cards = document.querySelectorAll(".card ");
+                //Este for borra los divs
+                for (let e = 0; e < cards.length; e++) {
+                    grilla.removeChild(cards[e]);
+                }
+            }                  
+            let btn = botones[i].innerText;
+            let data = new FormData();
+            data.append("status", status);
+            data.append("calle", btn);
+            fetch("../index.php", {
+                method:"post",
+                body:data
+            }).then(res=>res.json()).then(res=>crear(res));
+        })            
+    }  
+}
+
+function checkboxes() {
+var checks = d.querySelectorAll("[check]");   
+    for (let s = 0; s < 4; s++) {
+         checks[s].addEventListener('click', ()=>{
+            let check = checks[s].value;
+            if (check=="dead") {
+                console.log(check);
+                creador(16, check);
+            }
+            if (check=="alive") {
+                console.log(check);
+                creador(23, check);
+            }
+            if (check=="unknown") {
+                console.log(check);
+                creador(6, check);
+            }
+            if (check=="todos") {
+                console.log(check);
+                creador(43, check);
+            }
+        })
+}
+}    
+checkboxes()
+
     </script>
 </body>
 </html>
