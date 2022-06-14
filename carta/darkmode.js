@@ -3,7 +3,6 @@ let body = document.body;
             let filtro = document.getElementById("filtro");
             let btn = document.getElementById("dark");
             let oscuros = document.querySelectorAll("sun-mode");
-            console.log(btn);
             let sol = "☀️";
             let luna = "🌙";
             btn.addEventListener('click', ()=>{

@@ -75,8 +75,11 @@
             </nav>
         </div> -->
     </header>
-    <nav class="navegador navbar">
-       </nav>
+    <div class="nav">
+        <nav id="navegador" class="navbar">
+            </nav>
+    </div>
+    
     <div class="main">
         <aside id="filtro">
             <h2 class="titulo">Filtros</h2>
@@ -130,16 +133,18 @@
         </div> 
         
     </div>
-<nav class="navegador navbar">
-        </nav>
+    <div class="nav">
+ <nav id="navegador_2" class="navbar"></nav>
+    </div>
+   
     <script src="darkmode.js"> </script>
     <!-- <script src="js.js"> </script> -->
 
     <script>
          var d = document;
          var grilla = d.getElementById("grilla");
-         var nav = d.querySelectorAll(".navegador");
-         console.log(nav);
+         var nav = d.getElementById("navegador");
+         var nav_2 = d.getElementById("navegador_2");
          var cont = 0;
          async function getResponse() {
             let data = new FormData();
@@ -275,28 +280,37 @@ function crear(respo){
             };
         
 function creador(limite, status) {
-
     let btnes = document.querySelectorAll(".btn ");
-       for (let e = 0; e < btnes.length; e++) {
-            nav[0].removeChild(btnes[e])
-            nav[1].removeChild(btnes[e])
-        }   
+    let btnes_2 = document.querySelectorAll(".btn_2");
+    for (let i = 0; i < btnes.length; i++) {
+        nav.removeChild(btnes[i]) 
+    }
+    for (let ie = 0; ie < btnes_2.length; ie++) {
+        nav_2.removeChild(btnes_2[ie]) 
+    }
     //Este for crea los botones 
     for (let d = 1; d < limite; d++) {
         let btn = document.createElement("button");
-        var num = d;
+        let num = d;
         btn.setAttribute("atributo", num);
         btn.classList.add("btn");
         btn.innerText=d;
-        nav[0].appendChild(btn)
-        nav[2].appendChild(btn)
+        nav.appendChild(btn)
     }
-
+    for (let d = 1; d < limite; d++) {
+        let btn = document.createElement("button");
+        let num = d;
+        btn.setAttribute("atributo", num);
+        btn.classList.add("btn_2");
+        btn.innerText=d;
+        nav_2.appendChild(btn)
+    }
     var botones = d.querySelectorAll("[atributo]");
-
-    for (let i = 0; i < limite; i++) {
+    console.log(botones);
+    for (let i = 0; i < botones.length; i++) {
         //Este addEventListener escucha si se clickea
         botones[i].addEventListener('click',()=>{
+            console.log(botones[i]);
             console.log(status);
             cont++;
             //Este if borra los otros divs creados anteriormente
@@ -308,6 +322,7 @@ function creador(limite, status) {
                 }
             }                  
             let btn = botones[i].innerText;
+
             let data = new FormData();
             data.append("status", status);
             data.append("calle", btn);

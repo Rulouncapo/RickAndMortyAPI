@@ -24,8 +24,14 @@ header{
 .filtroso{
     font-size: 1.4em;
 }
+.nav{
+    display: flex;
+    justify-content: end;
+    margin-right: 80px;
+}
 .navbar{
     display: flex;
+    width: 70%;
     justify-content: center;    
     align-items: flex-start;
     flex-wrap: wrap;
@@ -40,6 +46,18 @@ header{
     padding: 10px 15px;
 }            
 .btn:hover{
+    background: rgba(128, 128, 128, 0.507);
+}
+.btn_2{
+    background: white;
+    border: none;
+    font-size: 1.3em;
+    margin: 3px 3px;
+    border: 0.5px gray solid;
+    transition: all 1s;
+    padding: 10px 15px;
+}            
+.btn_2:hover{
     background: rgba(128, 128, 128, 0.507);
 }
 .logo{
